@@ -2,9 +2,22 @@ let playerScore = 0;
 let computerScore = 0;
 
 
-function playRound(playerSelection, computerSelection){
-    let player = playerSelection.toLowerCase();
-    let computer = computerSelection.toLowerCase();
+function playRound(){
+    let player = window.prompt();
+    player = player.toLowerCase();
+
+    let computer = ''; 
+     switch (Math.floor(Math.random() * 3)){
+        case 0:
+            computer = 'rock'
+            break;
+        case 1:
+            computer = 'paper'
+            break;
+        case 2: 
+            computer = 'scissors'
+            break;        
+    }
 
     if (player == computer){
         return "Tie!";
@@ -36,11 +49,13 @@ function playRound(playerSelection, computerSelection){
     } 
 }
 function playGame(){
+    playerScore = 0;
+    computerScore = 0;
     while ((playerScore || computerScore) < 5){
         playRound()
     }
     
-    return computerScore;
+    return computerScore + " vs " + playerScore;
 }
 console.log(playGame())
 
