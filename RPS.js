@@ -2,9 +2,9 @@ let playerScore = 0;
 let computerScore = 0;
 
 
-function playRound(){
-    let player = window.prompt();
-    player = player.toLowerCase();
+function playRound(player){
+    const gameFeed = document.querySelector('#gameFeed');
+    const scoreSheet = document.querySelector('#scoreSheet')
 
     let computer = ''; 
      switch (Math.floor(Math.random() * 3)){
@@ -18,44 +18,50 @@ function playRound(){
             computer = 'scissors'
             break;        
     }
-
+    
     if (player == computer){
-        return "Tie!";
+        gameFeed.textContent = "Tie!";
     }
     else if (player == 'rock'){
         if (computer == 'scissors'){
             playerScore ++;
-            return "You win! Rock beats Scissors!";
+            gameFeed.textContent = "You Win! Rock beats Scissors!";
         }else if (computer == 'paper'){
             computerScore ++;
-            return "You lose! Paper covers Rock!";
+            gameFeed.textContent = "You Lose! Paper covers Rock!";
         }
     }else if (player == 'paper'){
          if (computer == 'rock'){
              playerScore ++;
-             return "You win! Paper covers Rock!";
+             gameFeed.textContent = "You Win! Paper covers Rock!";
         }else if (computer == 'scissors'){
               computerScore ++;
-              return "You lose! Scissors cut Paper!";
+              gameFeed.textContent = "You Lose! Scissors cut Paper!";
         }
     }else if (player == 'scissors'){
         if (computer == 'paper'){
             playerScore ++;
-            return "You win! Scissors cut Paper!";
+            gameFeed.textContent = "You Win! Scissors cut Paper!";
         } else if (computer == 'rock'){
             computerScore ++;
-            return "you lose! Rock beats Scissors!"
+            gameFeed.textContent = "You Lose! Rock beats Scissors!"
         }
     } 
+    scoreSheet.textContent = playerScore + ' ' + computerScore
+    if (playerScore >= 5){
+        gameFeed.textContent = 'You won the Game!'
+    }else if(computerScore >= 5){
+        gameFeed.textContent = 'You lost the Game!'
+    }
 }
-function playGame(){
-    playerScore = 0;
+/*function playGame(){
+    playerScore = 0;            code for rounds
     computerScore = 0;
     while ((playerScore || computerScore) < 5){
         playRound()
     }
     
-    return computerScore + " vs " + playerScore;
-}
-console.log(playGame())
+    gameFeed.textContent = computerScore + " vs " + playerScore;
+}*/
+console.log(playRound())  
 
